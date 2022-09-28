@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/Post");
+const Demo = require("../models/demo");
 
 
 //Gets all the posts
-router.route('/add').get(async (req, res) => {
+router.route('/').get(async (req, res) => {
   try{
-    const posts = await Post.find();
-    res.status(200).json(posts);
+    const demos = await Demo.find();
+    res.status(200).json(demos);
   }catch(err){
     res.status(400).json({message: err});
   }
 });
 
 //Get Specific post
-router.route('/:postId').get(async (req, res) => {
+router.route('/:demoId').get(async (req, res) => {
   try{
-    const post = await Post.findById(req.params.postId);
-    res.status(200).json(post);
+    const demo = await Demo.findById(req.params.demoId);
+    res.status(200).json(demo);
   }catch(err){
     res.status(400).json({message: err});
   }
@@ -29,14 +29,14 @@ router.route('/add').post(async (req, res) => {
         title,
         description 
     } = req.body;
-    const post = new Post({
+    const demo = new Demo({
         title,
         description 
     });
 
     try{
-        const savedPost = await post.save();
-        res.status(200).json(savedPost);
+        const savedDemo = await demo.save();
+        res.status(200).json(savedDemo);
     } catch(err){
         res.status(400).json({message: err});
     }
@@ -48,9 +48,9 @@ router.route('/add').post(async (req, res) => {
 });
 
 //Delete a post
-router.route('/:postId').delete(async (req, res) => {
+router.route('/:demoId').delete(async (req, res) => {
   try{
-    const removedPost = await Post.remove({_id: req.params.postId});
+    const removedDemo = await Demo.remove({_id: req.params.demoId});
     res.status(200).json({"message": "Post Deleted Successfully"});
   }catch(err){
     res.status(400).json({message: err});
@@ -58,13 +58,13 @@ router.route('/:postId').delete(async (req, res) => {
 });
 
 //Update a post
-router.route('/:postId').patch(async (req, res) => {
+router.route('/:demoId').patch(async (req, res) => {
   try{
-    const updatedPost = await Post.updateOne(
-      {_id: req.params.postId},
+    const updatedDemo = await Demo.updateOne(
+      {_id: req.params.demoId},
       {$set: {title: req.body.title}}
     );
-    res.status(200).json(updatedPost);
+    res.status(200).json(updatedDemo);
   }catch(err){
     res.status(400).json({message: err});
   }

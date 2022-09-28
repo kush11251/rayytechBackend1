@@ -18,8 +18,11 @@ mongoose.connection.once('open', () => {
     console.log("mongodb connected");
 })
 
-const post = require('./routes/posts')
-app.use('/post',post)
+const demo = require('./routes/demos')
+app.use('/demo',demo)
+
+const admin = require('./routes/admins')
+app.use('/admin',admin)
 
 app.listen(port, () => {
     console.log("server running on port :-" + port);
