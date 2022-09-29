@@ -24,6 +24,9 @@ app.use('/demo',demo)
 const admin = require('./routes/admins')
 app.use('/admin',admin)
 
+const user = require('./routes/users')
+app.use('/users',user)
+
 app.listen(port, () => {
     console.log("server running on port :-" + port);
 });
