@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Demo = require("../models/demo");
+const Demo = require("../models/Demo");
 
 
 //Gets all the posts
